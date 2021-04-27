@@ -1,0 +1,102 @@
+<html>
+<head>
+    <title>ITC5202</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="jquery-svg-to-inline.js"></script>
+    <script>
+        function myFunction(){
+        $(document).ready(function () {
+            getCountry($('#userInput').val());
+        });
+
+        function getCountry(city){
+            $.ajax({
+                url: 'https://restcountries.eu/rest/v2/name/'+ city,
+                success: function (JsonCuntry) {
+                    $.each(JsonCuntry, function(index, value){
+                        $('.Countryname').html(value.name);
+                        $('.Population').html(value.population);
+                        $('.NativeName').html(value.nativeName);
+                        $('.Timezones').html(value.timezones[0]);
+                        $('.flag').attr('src','https://restcountries.eu/data/'+ value.alpha3Code.toLowerCase() +'.svg');
+                    $.ajax({
+                        url: 'http://api.currencylayer.com/live?access_key=64275bb6d00b609f98408e0dd9228bfe',
+                        dataType: 'jsonp',
+                        success: (JsonCurrency) => {
+                            $('.exchangeRate').html(JsonCurrency.quotes['USD'+value.currencies[0].code])
+                        },error: function(){ alert('Error!')},
+                    });
+                    })
+                },error: function(){ alert('Error!')},   
+            });
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <input id="userInput" type="text" />
+    <button onclick="myFunction()">click here</button>
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Country name</th>
+                    </tr>
+                </thead>
+                <tbody class="Countryname">
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Population</th>
+                    </tr>
+                </thead>
+                <tbody class="Population">
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Native name</th>
+                    </tr>
+                </thead>
+                <tbody class="NativeName">
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Timezones</th>
+                    </tr>
+                </thead>
+                <tbody class="Timezones">
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Exchange Rate vs USD</th>
+                    </tr>
+                </thead>
+                <tbody class="exchangeRate">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <img src="" class="flag"></img>
+</body>
+
+</html>

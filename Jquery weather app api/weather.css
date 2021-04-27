@@ -8,6 +8,9 @@ body {
   font-family: sans-serif;
 }
 
+h1 {
+  font-family: cursive;
+}
 .container {
   height: 80vh;
   background-color: #ffffff;
@@ -42,6 +45,10 @@ body {
   box-shadow: 5px 6px 6px 2px #e9ecef;
   text-align: center;
 }
+.card:hover {
+  background-color: rgb(155, 38, 38);
+  color: black;
+}
 
 @media (max-width: 768px) {
   .card {
@@ -61,21 +68,17 @@ body {
   margin-bottom: 0.2rem;
   font-size: 1.2rem;
 }
-.MaxTempToronto {
-  font-size: 2.6rem;
-  margin-bottom: 1rem;
-}
 
+.MaxTempToronto,
+.FeelsLikeToronto,
 .MinTempToronto {
   font-size: 2.6rem;
   margin-bottom: 1rem;
 }
-.MaxTempBarrie {
-  font-size: 2.6rem;
-  margin-bottom: 1rem;
-}
 
-.MinTempBarrie {
+.MaxTempBarrie,
+.MinTempBarrie,
+.FeelsLikeBarrie {
   font-size: 2.6rem;
   margin-bottom: 1rem;
 }
